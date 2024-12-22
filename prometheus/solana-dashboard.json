@@ -2776,10 +2776,6 @@
         "type": "query"
       },
       {
-        "current": {
-          "text": "vsxzHMFpXb4A5KtZioQWzT8V2J4tWzirp7tKh43hMHx",
-          "value": "vsxzHMFpXb4A5KtZioQWzT8V2J4tWzirp7tKh43hMHx"
-        },
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
@@ -2800,10 +2796,6 @@
         "type": "query"
       },
       {
-        "current": {
-          "text": "23.92.79.22",
-          "value": "23.92.79.22"
-        },
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
