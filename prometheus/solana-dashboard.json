@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "Prometheus datasource",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -43,7 +53,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -92,7 +102,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -110,7 +120,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -181,7 +191,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "avg_over_time(up{app=\"$chain_name\", job=\"solana-exporter\"}[$__range])",
@@ -205,7 +215,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -269,7 +279,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Solana client software version running on the node.",
       "fieldConfig": {
@@ -304,7 +314,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "instance"
+              "options": "${__field.name}"
             },
             "properties": [
               {
@@ -347,7 +357,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -409,7 +419,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Number of slots that the node is behind.",
       "fieldConfig": {
@@ -500,7 +510,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "solana_node_num_slots_behind{app=\"$chain_name\"}",
@@ -538,7 +548,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Rate at which the validator produces blocks (and skips slots) per minute.",
       "fieldConfig": {
@@ -668,7 +678,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "60 * sum by (nodekey, status) (rate(\n    solana_validator_leader_slots_by_epoch_total{app=\"$chain_name\", hostname=\"$host\", nodekey=\"$nodekey\"}[1h])\n)",
@@ -684,7 +694,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Total number of transactions per block.",
       "fieldConfig": {
@@ -779,7 +789,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(solana_validator_block_size{app=\"$chain_name\", hostname=\"$host\", nodekey=\"$nodekey\"})",
@@ -792,7 +802,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "increase(solana_node_transactions_total{app=\"$chain_name\", hostname=\"$host\"}[5m]) / increase(solana_node_slot_height{app=\"$chain_name\", hostname=\"$host\"}[5m])",
@@ -809,7 +819,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "The distance from the configured nodekey's root slot to the maximum observed root slot.",
       "fieldConfig": {
@@ -899,7 +909,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -916,7 +926,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Skip rate grouped by epoch, similar to validators.app",
       "fieldConfig": {
@@ -1012,7 +1022,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:validator_epoch_skip_rate{hostname=\"$host\", nodekey=\"$nodekey\"}",
@@ -1025,7 +1035,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * avg_over_time(solana:cluster_epoch_skip_rate{hostname=\"$host\"}[1d])",
@@ -1038,7 +1048,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * avg_over_time(solana:validator_epoch_skip_rate{hostname=\"$host\", nodekey=\"$nodekey\"}[1d])",
@@ -1055,7 +1065,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "The distance between the highest on-chain last vote slot, and the configured nodekey's last vote slot.",
       "fieldConfig": {
@@ -1154,7 +1164,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Average skip rate over a running window.",
       "fieldConfig": {
@@ -1215,7 +1225,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "1h - cluster"
+              "options": "${__field.name}"
             },
             "properties": [
               {
@@ -1240,7 +1250,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "1h - Certusm1sa411sMpV9FPqU5dXAYhmmhygvxJ23S6hJ24"
+              "options": "${__field.name}"
             },
             "properties": [
               {
@@ -1265,7 +1275,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "1d - cluster"
+              "options": "${__field.name}"
             },
             "properties": [
               {
@@ -1280,7 +1290,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "1d - Certusm1sa411sMpV9FPqU5dXAYhmmhygvxJ23S6hJ24"
+              "options": "${__field.name}"
             },
             "properties": [
               {
@@ -1324,7 +1334,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:cluster_hour_skip_rate{hostname=\"$host\"}",
@@ -1337,7 +1347,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:validator_hour_skip_rate{hostname=\"$host\", nodekey=\"$nodekey\"}",
@@ -1350,7 +1360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:cluster_day_skip_rate{hostname=\"$host\"}",
@@ -1363,7 +1373,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:validator_day_skip_rate{hostname=\"$host\", nodekey=\"$nodekey\"}",
@@ -1393,7 +1403,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Total validator stake, in SOL",
       "fieldConfig": {
@@ -1455,7 +1465,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1516,7 +1526,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1615,7 +1625,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Balance (in SOL) of monitored Solana addresses.",
       "fieldConfig": {
@@ -1715,7 +1725,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Solana transaction fee rewards earned by tracked validators.",
       "fieldConfig": {
@@ -1815,7 +1825,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Hourly average amount of fee lamports earned per transaction.",
       "fieldConfig": {
@@ -1916,7 +1926,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Solana transaction fee rewards (in SOL) earned in different epochs.",
       "fieldConfig": {
@@ -2007,7 +2017,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Solana Inflation rewards (in SOL) for different epochs.",
       "fieldConfig": {
@@ -2116,7 +2126,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2165,7 +2175,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "solana_node_epoch_number{app=\"$chain_name\", hostname=\"$host\"}",
@@ -2181,7 +2191,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "How far the cluster is through the current epoch.",
       "fieldConfig": {
@@ -2243,7 +2253,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2352,7 +2362,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "count (solana_validator_delinquent{app=\"$chain_name\", hostname=\"$host\"} == 1)",
@@ -2364,7 +2374,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "count (solana_validator_delinquent{app=\"$chain_name\", hostname=\"$host\"} == 0)",
@@ -2377,7 +2387,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "count (solana_validator_delinquent{app=\"$chain_name\", hostname=\"$host\"})",
@@ -2394,7 +2404,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Average time between slots.",
       "fieldConfig": {
@@ -2483,7 +2493,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "1000 / (rate(solana_node_slot_height{app=\"$chain_name\"}[30m]) > 0)",
@@ -2509,7 +2519,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -2599,7 +2609,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${ds}"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2625,7 +2635,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "fe2dataaouznkf"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Rolling cluster skip rate with different window lengths.",
       "fieldConfig": {
@@ -2720,7 +2730,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "fe2dataaouznkf"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * solana:cluster_day_skip_rate",
@@ -2748,7 +2758,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "fe2dataaouznkf"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(solana_node_version,app)",
         "includeAll": false,
@@ -2767,12 +2777,12 @@
       },
       {
         "current": {
-          "text": "Certusm1sa411sMpV9FPqU5dXAYhmmhygvxJ23S6hJ24",
-          "value": "Certusm1sa411sMpV9FPqU5dXAYhmmhygvxJ23S6hJ24"
+          "text": "vsxzHMFpXb4A5KtZioQWzT8V2J4tWzirp7tKh43hMHx",
+          "value": "vsxzHMFpXb4A5KtZioQWzT8V2J4tWzirp7tKh43hMHx"
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "fe2dataaouznkf"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(solana_validator_delinquent,nodekey)",
         "includeAll": false,
@@ -2791,12 +2801,12 @@
       },
       {
         "current": {
-          "text": "my-host.name",
-          "value": "my-host.name"
+          "text": "23.92.79.22",
+          "value": "23.92.79.22"
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "fe2dataaouznkf"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(solana_node_version,hostname)",
         "description": "Select a host to view cluster-stats from. \n\nNOTE: Make sure this host is running without light mode.",
